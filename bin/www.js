@@ -1,3 +1,4 @@
+// 处理端口相关配置
 const http = require('http')
 
 const PORT = 8000
