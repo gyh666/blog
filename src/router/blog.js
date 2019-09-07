@@ -5,8 +5,16 @@ const {
   updateBlog,
   deleteBlog
 } = require('../controller/blog')
-
 const { SuccessModel, ErrorModel } = require('../model/resModel')
+
+// 统一的登录验证函数
+const loginCheck = req => {
+  if (!req.session.username) {
+    return Promise.resolve(
+      new ErrorModel('尚未登录')
+    )
+  }
+}
 
 const handleBlogRouter = (req, res) => {
   const method = req.method
@@ -32,7 +40,10 @@ const handleBlogRouter = (req, res) => {
 
   // 新建博客
   if (method === 'POST' && req.path === '/api/blog/new') {
-    req.body.author = '张三'  //假数据，待开发登录时再改成真实数据
+    const loginCheckResult = loginCheck(req)
+    if (loginCheckResult) return loginCheckResult   //未登录
+
+    req.body.author = req.session.username  //假数据，待开发登录时再改成真实数据
     const result = newBlog(req.body)
     return result.then(data => {
       return new SuccessModel(data)
@@ -41,6 +52,9 @@ const handleBlogRouter = (req, res) => {
 
   // 更新博客
   if (method === 'POST' && req.path === '/api/blog/update') {
+    const loginCheckResult = loginCheck(req)
+    if (loginCheckResult) return loginCheckResult   //未登录
+
     const result = updateBlog(id, req.body)
     return result.then(flag => {
       if (flag) {
@@ -53,7 +67,10 @@ const handleBlogRouter = (req, res) => {
 
   // 删除博客
   if (method === 'POST' && req.path === '/api/blog/delete') {
-    const author = '张三'  //假数据，待开发登录时再改成真实数据
+    const loginCheckResult = loginCheck(req)
+    if (loginCheckResult) return loginCheckResult   //未登录
+
+    const author = req.session.username  //假数据，待开发登录时再改成真实数据
     const result = deleteBlog(id, author)
     return result.then(flag => {
       return flag ? new SuccessModel() : new ErrorModel('删除博客失败！')
