@@ -3,7 +3,7 @@
 基于原生 `nodejs + mysql + redis` 开发的博客系统，利用nginx配置代理，实现了简单的用户注册登录，以及博客增删改查等功能。登录是对用户 id 进行 cookie、session 的存储，利用 redius 进行同步从而保存用户的状态。运用 stream 对访问日志、错误日志以及事件日志进行读写。
 
 ### 目录结构
-
+```
 |-- blog
     |-- app.js              // 入口文件
     |-- package.json
@@ -31,3 +31,4 @@
         |-- utils           // 工具库
             |-- index.js
             |-- log.js      // 日志操作库
+```
