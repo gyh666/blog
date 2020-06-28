@@ -21,8 +21,8 @@ const newBlog = async data => {
   return res.insertId;
 }
 
-const updateBlog = async (id, data = {}) => {
-  const { title, content, author, description = '' } = data;
+const updateBlog = async (data = {}) => {
+  const { id, title, content, author, description = '' } = data;
   const createTime = Date.now();
   const sql = `update blog set title='${title}', content='${content}', author='${author}', createTime=${createTime}, description='${description}' where id=${escape(id)};`;
   let res = await exec(sql);

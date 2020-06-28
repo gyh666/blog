@@ -5,16 +5,9 @@ const { SuccessModel, ErrorModel } = require('../model/resModel');
 
 const handleUserRouter = async (req, res) => {
   const { method, path } = req;
-  // // 登录接口
-  // if (method === 'POST' && path === '/api/user/login') {
-  //   const { username, password } = req.body;
-  //   let result = await login(username, password);
-  //   return result[0] && result[0].username ? new SuccessModel(result[0], '登录成功') : new ErrorModel('登录失败');
-  // }
-
   // 登录接口
-  if (method === 'GET' && path === '/api/user/login') {
-    const { username, password } = req.query;
+  if (method === 'POST' && path === '/api/user/login') {
+    const { username, password } = req.body;
     let result = await login(username, password);
     if (result.username) {
       req.session.username = result.username;
