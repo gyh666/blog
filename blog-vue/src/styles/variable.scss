@@ -1,0 +1,31 @@
+// color
+$themeColor: #4a69ec;
+
+// mixin
+// flex 布局
+@mixin flex($direction: row, $jc: flex-start, $at: flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $jc;
+  align-items: $at;
+}
+
+// 单行文本隐藏
+@mixin text-overflow($width: 100%, $display: block) {
+	width: $width;
+	display: $display;
+	white-space: nowrap;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+// 多行文本隐藏
+@mixin text-clamp($n: 1, $lh: 20px) {
+	line-height: $lh;
+	height: ($lh * $n);
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $n;
+	overflow: hidden;
+}

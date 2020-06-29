@@ -1,0 +1,63 @@
+@import "./reset.css";
+@import "./variable.scss";
+
+#nprogress .bar {
+  background: $themeColor !important; //自定义加载进度条颜色
+}
+
+.page {
+  width: 100vw;
+  // min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content-box {
+  width: 100%;
+  overflow-x: hidden;
+  flex: 1;
+  min-height: calc(100vh - 100px);
+  width: 1080px;
+  margin: 60px auto 0;
+  padding: 30px 0 50px;
+  box-sizing: border-box;
+
+  .container-left {
+    width: 66.67%;
+  }
+
+  .container-right {
+    width: 30%;
+    margin-left: 3.33%;
+  }
+}
+
+.container {
+  width: 1080px;
+  margin: 0 auto;
+}
+
+.flex1 {
+  flex: 1;
+}
+
+.flex-row {
+  @include flex;
+}
+
+.flex-row-between {
+  @include flex(row, space-between, center);
+}
+
+.flex-column {
+  @include flex(column);
+}
+
+.text-ellipsis {
+  @include text-overflow;
+}
+
+.ellipsis3 {
+  @include text-clamp(3, 34px);
+}
