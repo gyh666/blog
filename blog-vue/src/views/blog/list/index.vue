@@ -32,7 +32,7 @@ export default {
   methods: {
     async getList() {
       const { code, msg, data } = await this.$api.getBlogList();
-      if (code != 0) return this.$message.warning(msg);
+      if (code != 200) return this.$message.warning(msg);
       this.blogList = data;
     },
     viewDetail(id) {

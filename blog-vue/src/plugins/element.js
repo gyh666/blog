@@ -6,9 +6,9 @@ import {
   Input,
   Icon,
   Loading,
-  Message
-  // Form,
-  // FormItem,
+  Message,
+  Form,
+  FormItem
   // Dialog,
   // Progress,
   // Popover,
@@ -28,8 +28,8 @@ Vue.use(Button);
 Vue.use(Input);
 Vue.use(Icon);
 Vue.use(Loading);
-// Vue.use(Form);
-// Vue.use(FormItem);
+Vue.use(Form);
+Vue.use(FormItem);
 // Vue.use(Dialog);
 // Vue.use(Progress);
 // Vue.use(Popover);

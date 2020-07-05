@@ -28,7 +28,7 @@ export default {
       const { code, msg, data } = await this.$api.getBlogDetail({
         id: this.id
       });
-      if (code != 0) return this.$message.warning(msg);
+      if (code != 200) return this.$message.warning(msg);
       this.info = data;
       console.log(this.info);
     }

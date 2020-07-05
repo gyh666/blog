@@ -5,12 +5,6 @@ const setCookieExpires = (n = 1) => {
   return d.toGMTString();
 }
 
-// 检验是否登录
-const checkLogin = req => {
-  return req.session && req.session.username ? true : false;
-}
-
 module.exports = {
-  setCookieExpires,
-  checkLogin
+  setCookieExpires
 }
