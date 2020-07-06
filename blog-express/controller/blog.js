@@ -1,4 +1,5 @@
 const { exec } = require('../db/mysql');
+const xss = require('xss');
 
 const getList = (author, keyword) => {
   let sql = `select * from blog where 1=1 `;
@@ -16,7 +17,7 @@ const getDeatail = id => {
 const newBlog = async data => {
   const { title, content, author = '张三', description = '' } = data;
   const createTime = Date.now();
-  const sql = `insert into blog(title, author, description, content, createTime) values ('${title}', '${author}', '${description}', '${content}', ${createTime});`;
+  const sql = `insert into blog(title, author, description, content, createTime) values ('${xss(title)}', '${xss(author)}', '${xss(description)}', '${xss(content)}', ${createTime});`;
   let res = await exec(sql);
   return res.insertId;
 }
@@ -24,7 +25,7 @@ const newBlog = async data => {
 const updateBlog = async (data = {}) => {
   const { id, title, content, author, description = '' } = data;
   const createTime = Date.now();
-  const sql = `update blog set title='${title}', content='${content}', author='${author}', createTime=${createTime}, description='${description}' where id=${escape(id)};`;
+  const sql = `update blog set title='${xss(title)}', content='${xss(content)}', author='${xss(author)}', createTime=${createTime}, description='${xss(description)}' where id=${escape(id)};`;
   let res = await exec(sql);
   return res.changedRows;
 }
