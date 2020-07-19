@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Version: 
+ * @Author: 
+ * @Date: 2020-06-28 21:45:16
+ * @LastEditors: 
+ * @LastEditTime: 2020-07-19 20:49:16
+ */ 
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -39,11 +47,13 @@ const sessionStore = new RedisStore({
 // session
 app.use(session({
   secret: 'Bugmaker_666#123',     // 密匙
+  // 配置 cookie
   cookie: {
     path: '/',
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000   // 1天过期
   },
+  // 配置 redis
   store: sessionStore
 }));
 
